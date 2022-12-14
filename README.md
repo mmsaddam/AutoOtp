@@ -13,5 +13,5 @@ _[Get the idea from this tutorial][tutrial_link]_
 
 
 
-[otp_zif]: https:auto_otp.gif
+[otp_zif]: auto_otp.gif
 [tutrial_link]: https://www.youtube.com/watch?v=27dOmSJKDIE
