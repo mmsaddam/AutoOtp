@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct VerificationView: View {
+struct OtpInputView: View {
     @ObservedObject var viewModel: OtpViewModel = .init()
     @FocusState var activeField: OtpField?
     
     var body: some View {
         VStack {
-           otpField()
+            otpField()
             
             Button {
                 
@@ -44,7 +44,7 @@ struct VerificationView: View {
                 .font(.callout)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-
+            
         }
         .padding()
         .frame(maxHeight: .infinity, alignment: .top)
@@ -54,8 +54,8 @@ struct VerificationView: View {
         
     }
     
-    func checkState() -> Bool {
-        for index in 0..<6 {
+    private func checkState() -> Bool {
+        for index in 0..<viewModel.otpLen {
             if viewModel.fields[index].isEmpty {
                 return true
             }
@@ -63,23 +63,23 @@ struct VerificationView: View {
         return false
     }
     
-    func checkConditions(value: [String]) {
+    private func checkConditions(value: [String]) {
         /// Focus next field
-        for index in 0..<5 {
+        for index in 0..<viewModel.otpLen - 1 {
             if value[index].count == 1 && activeField == activeFieldForIndex(index) {
                 activeField = activeFieldForIndex(index + 1)
             }
         }
         
         /// Moving back when current is empty and previous is not empty
-        for index in 1...5 {
+        for index in 1..<viewModel.otpLen  {
             if value[index].isEmpty && !value[index - 1].isEmpty {
                 activeField = activeFieldForIndex(index - 1)
             }
         }
         
         /// Restricted to single character
-        for index in 0..<6 {
+        for index in 0..<viewModel.otpLen {
             if value[index].count > 1 {
                 viewModel.fields[index] = String(value[index].first!)
             }
@@ -87,16 +87,16 @@ struct VerificationView: View {
     }
     
     
-    @ViewBuilder func otpField() -> some View {
+    @ViewBuilder private func otpField() -> some View {
         HStack(spacing: 14) {
-            ForEach(0..<6, id: \.self) { index in
+            ForEach(0..<viewModel.otpLen, id: \.self) { index in
                 VStack(spacing: 8) {
                     TextField("", text: $viewModel.fields[index])
                         .keyboardType(.numberPad)
                         .textContentType(.oneTimeCode)
                         .multilineTextAlignment(.center)
                         .focused($activeField, equals: activeFieldForIndex(index))
-                        
+                    
                     Rectangle()
                         .fill(activeField == activeFieldForIndex(index) ? .blue : .gray)
                         .frame(height: 4)
@@ -108,7 +108,7 @@ struct VerificationView: View {
         }
     }
     
-    func activeFieldForIndex(_ index: Int) -> OtpField {
+    private func activeFieldForIndex(_ index: Int) -> OtpField {
         switch index {
         case 0: return .field1
         case 1: return .field2
@@ -123,7 +123,7 @@ struct VerificationView: View {
 
 struct Verification_Previews: PreviewProvider {
     static var previews: some View {
-        VerificationView()
+        OtpInputView()
     }
 }
 
@@ -134,5 +134,4 @@ enum OtpField: Hashable {
     case field4
     case field5
     case field6
-    
 }

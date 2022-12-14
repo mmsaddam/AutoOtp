@@ -11,7 +11,7 @@
 		3676F5932948A13B00EE57E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676F5922948A13B00EE57E1 /* ContentView.swift */; };
 		3676F5952948A13D00EE57E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3676F5942948A13D00EE57E1 /* Assets.xcassets */; };
 		3676F5982948A13D00EE57E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3676F5972948A13D00EE57E1 /* Preview Assets.xcassets */; };
-		3676F59F2948A1B300EE57E1 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676F59E2948A1B300EE57E1 /* VerificationView.swift */; };
+		3676F59F2948A1B300EE57E1 /* OtpInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676F59E2948A1B300EE57E1 /* OtpInputView.swift */; };
 		3676F5A22948A40A00EE57E1 /* OtpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676F5A12948A40A00EE57E1 /* OtpViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -21,7 +21,7 @@
 		3676F5922948A13B00EE57E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3676F5942948A13D00EE57E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3676F5972948A13D00EE57E1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		3676F59E2948A1B300EE57E1 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
+		3676F59E2948A1B300EE57E1 /* OtpInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpInputView.swift; sourceTree = "<group>"; };
 		3676F5A12948A40A00EE57E1 /* OtpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,7 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				3676F5902948A13B00EE57E1 /* AutoOtpApp.swift */,
-				3676F59E2948A1B300EE57E1 /* VerificationView.swift */,
+				3676F59E2948A1B300EE57E1 /* OtpInputView.swift */,
 				3676F5A02948A3E600EE57E1 /* ViewModel */,
 				3676F5922948A13B00EE57E1 /* ContentView.swift */,
 				3676F5942948A13D00EE57E1 /* Assets.xcassets */,
@@ -152,7 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3676F5A22948A40A00EE57E1 /* OtpViewModel.swift in Sources */,
-				3676F59F2948A1B300EE57E1 /* VerificationView.swift in Sources */,
+				3676F59F2948A1B300EE57E1 /* OtpInputView.swift in Sources */,
 				3676F5932948A13B00EE57E1 /* ContentView.swift in Sources */,
 				3676F5912948A13B00EE57E1 /* AutoOtpApp.swift in Sources */,
 			);
