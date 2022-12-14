@@ -9,12 +9,12 @@ import SwiftUI
 
 class OtpViewModel: ObservableObject {
     let otpLen: Int
-    static let maxLen = 6
+    static let maxLen = 8
     static let minLen = 3
     @Published var optText: String = ""
     @Published var fields: [String] = []
     
-    init(otpLen: Int = 6) {
+    init(otpLen: Int = 8) {
         let notGreaterThanMax = min(otpLen, Self.maxLen)
         let notLessThanMin = max(notGreaterThanMax, Self.minLen)
         self.otpLen = notLessThanMin

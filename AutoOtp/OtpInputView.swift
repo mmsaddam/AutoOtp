@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OtpInputView: View {
     @ObservedObject var viewModel: OtpViewModel = .init()
-    @FocusState var activeField: OtpField?
+    @FocusState var activeFieldIdx: Int?
     
     var body: some View {
         VStack {
@@ -66,15 +66,15 @@ struct OtpInputView: View {
     private func checkConditions(value: [String]) {
         /// Focus next field
         for index in 0..<viewModel.otpLen - 1 {
-            if value[index].count == 1 && activeField == activeFieldForIndex(index) {
-                activeField = activeFieldForIndex(index + 1)
+            if value[index].count == 1 && activeFieldIdx == index {
+                activeFieldIdx = index + 1
             }
         }
         
         /// Moving back when current is empty and previous is not empty
         for index in 1..<viewModel.otpLen  {
             if value[index].isEmpty && !value[index - 1].isEmpty {
-                activeField = activeFieldForIndex(index - 1)
+                activeFieldIdx = index - 1
             }
         }
         
@@ -95,10 +95,10 @@ struct OtpInputView: View {
                         .keyboardType(.numberPad)
                         .textContentType(.oneTimeCode)
                         .multilineTextAlignment(.center)
-                        .focused($activeField, equals: activeFieldForIndex(index))
+                        .focused($activeFieldIdx, equals: index)
                     
                     Rectangle()
-                        .fill(activeField == activeFieldForIndex(index) ? .blue : .gray)
+                        .fill(activeFieldIdx == index ? .blue : .gray)
                         .frame(height: 4)
                 }
                 .frame(height: 40)
@@ -108,16 +108,6 @@ struct OtpInputView: View {
         }
     }
     
-    private func activeFieldForIndex(_ index: Int) -> OtpField {
-        switch index {
-        case 0: return .field1
-        case 1: return .field2
-        case 2: return .field3
-        case 3: return .field4
-        case 4: return .field5
-        default: return .field6
-        }
-    }
 }
 
 
@@ -125,13 +115,4 @@ struct Verification_Previews: PreviewProvider {
     static var previews: some View {
         OtpInputView()
     }
-}
-
-enum OtpField: Hashable {
-    case field1
-    case field2
-    case field3
-    case field4
-    case field5
-    case field6
 }
