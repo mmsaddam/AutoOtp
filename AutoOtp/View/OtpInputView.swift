@@ -10,13 +10,14 @@ import SwiftUI
 struct OtpInputView: View {
     @ObservedObject var viewModel: OtpViewModel = .init()
     @FocusState var activeFieldIdx: Int?
+    var style: InputStyle = .default
     
     var body: some View {
         VStack {
             otpField()
             
             Button {
-                
+                viewModel.verify()
             } label: {
                 Text("Verify")
                     .fontWeight(.semibold)
@@ -90,19 +91,15 @@ struct OtpInputView: View {
     @ViewBuilder private func otpField() -> some View {
         HStack(spacing: 14) {
             ForEach(0..<viewModel.otpLen, id: \.self) { index in
-                VStack(spacing: 8) {
-                    TextField("", text: $viewModel.fields[index])
-                        .keyboardType(.numberPad)
-                        .textContentType(.oneTimeCode)
-                        .multilineTextAlignment(.center)
+                if style == .default {
+                    DefaultInputField(text: $viewModel.fields[index], isFocused: activeFieldIdx == index)
                         .focused($activeFieldIdx, equals: index)
                     
-                    Rectangle()
-                        .fill(activeFieldIdx == index ? .blue : .gray)
-                        .frame(height: 4)
+                } else {
+                    CapsuleInputField(text: $viewModel.fields[index], isFocused: activeFieldIdx == index)
+                        .focused($activeFieldIdx, equals: index)
+                    
                 }
-                .frame(height: 40)
-                
             }
             
         }
